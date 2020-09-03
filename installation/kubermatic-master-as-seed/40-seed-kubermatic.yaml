@@ -1,0 +1,53 @@
+---
+# task: create seed config for betacloud
+# hint: read documentation
+#
+apiVersion: kubermatic.k8s.io/v1
+kind: Seed
+metadata:
+  name: kubermatic
+  namespace: kubermatic
+spec:
+  # these two fields are only informational
+  country: DE
+  location: Vohburg
+
+  # list of datacenters where this seed cluster is allowed to create clusters in
+  datacenters:
+    betacloud:
+      country: DE
+      location: Vohburg
+      spec:
+        openstack:
+          auth_url: "https://api-1.betacloud.de:5000/v3"
+          availability_zone: "south-2"
+          # Used for automatic network creation
+          dns_servers:
+            - 8.8.8.8
+          # Optional
+          enforce_floating_ip: false
+          # Optional
+          ignore_volume_az: false
+          # Images to use for each supported operating system.
+          images:
+            ubuntu: "Ubuntu 18.04"
+          # Optional: Gets mapped to the "manage-security-groups" setting in the cloud config.
+          # See https://kubernetes.io/docs/concepts/cluster-administration/cloud-providers/#load-balancer
+          # This setting defaults to true.
+          manage_security_groups: true
+          node_size_requirements:
+            # MinimumMemory is the minimum required amount of memory, measured in MB
+            minimum_memory: 0
+            # VCPUs is the minimum required amount of (virtual) CPUs
+            minimum_vcpus: 0
+          region: ""
+          # Optional: Gets mapped to the "trust-device-path" setting in the cloud config.
+          # See https://kubernetes.io/docs/concepts/cluster-administration/cloud-providers/#block-storage
+          # This setting defaults to false.
+          trust_device_path: false
+
+  # reference to the kubeconfig to use when connecting to this seed cluster
+  kubeconfig:
+    kind: Secret
+    name: kubeconfig-germany-betacloud
+    namespace: kubermatic

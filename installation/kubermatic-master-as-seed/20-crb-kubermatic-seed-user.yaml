@@ -1,0 +1,17 @@
+---
+# task: create a clusterrolebinding for kubermatic seed user
+# hint: kubectl create clusterrolebinding crb:kubermatic-seed-to-admin --clusterrole cluster-admin --serviceaccount kube-system:kubermatic-seed-user --dry-run=client -oyaml
+#
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  creationTimestamp: null
+  name: crb:kubermatic-seed-to-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: kubermatic-seed-user
+  namespace: kube-system

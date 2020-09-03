@@ -1,0 +1,12 @@
+---
+# task: create a OpenStack Cinder StorageClass
+#
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: cinder-default
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/cinder
+parameters:
+  availability: "south-2"

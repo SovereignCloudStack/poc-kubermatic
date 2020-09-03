@@ -1,0 +1,11 @@
+---
+# task: create a OpenStack Cinder StorageClass
+#
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: kubermatic-fast
+  annotations:
+provisioner: kubernetes.io/cinder
+parameters:
+  availability: "south-2"

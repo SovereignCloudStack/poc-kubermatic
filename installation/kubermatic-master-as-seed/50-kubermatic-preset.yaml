@@ -1,0 +1,13 @@
+apiVersion: kubermatic.k8s.io/v1
+kind: Preset
+metadata:
+  name: betacloud-scs-kubermatic
+spec:
+  requiredEmailDomains:
+    - localhost.local
+  openstack:
+    username: scs-kubermatic
+    password: "redacted, please use the gopass pw"
+    tenant: scs-kubermatic
+    domain: scs
+    floatingIpPool: external

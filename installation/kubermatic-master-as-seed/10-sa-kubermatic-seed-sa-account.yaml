@@ -1,0 +1,10 @@
+---
+# task: create a service-account for
+# hint: kubectl create serviceaccount kubermatic-seed-user --namespace kube-system --dry-run=client -oyaml
+#
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: null
+  name: kubermatic-seed-user
+  namespace: kube-system

@@ -1,0 +1,158 @@
+{
+  "kubeone_api": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "endpoint": "string"
+      }
+    ],
+    "value": {
+      "endpoint": "81.163.192.58"
+    }
+  },
+  "kubeone_hosts": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "control_plane": [
+          "object",
+          {
+            "bastion": "string",
+            "bastion_port": "number",
+            "bastion_user": "string",
+            "cloud_provider": "string",
+            "cluster_name": "string",
+            "hostnames": [
+              "tuple",
+              [
+                "string",
+                "string",
+                "string"
+              ]
+            ],
+            "private_address": [
+              "tuple",
+              [
+                "string",
+                "string",
+                "string"
+              ]
+            ],
+            "ssh_agent_socket": "string",
+            "ssh_port": "number",
+            "ssh_private_key_file": "string",
+            "ssh_user": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "control_plane": {
+        "bastion": "81.163.192.58",
+        "bastion_port": 22,
+        "bastion_user": "ubuntu",
+        "cloud_provider": "openstack",
+        "cluster_name": "poc-k8c",
+        "hostnames": [
+          "poc-k8c-cp-0",
+          "poc-k8c-cp-1",
+          "poc-k8c-cp-2"
+        ],
+        "private_address": [
+          "192.168.1.14",
+          "192.168.1.9",
+          "192.168.1.5"
+        ],
+        "ssh_agent_socket": "env:SSH_AUTH_SOCK",
+        "ssh_port": 22,
+        "ssh_private_key_file": "",
+        "ssh_user": "ubuntu"
+      }
+    }
+  },
+  "kubeone_workers": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "poc-k8c-pool1": [
+          "object",
+          {
+            "providerSpec": [
+              "object",
+              {
+                "cloudProviderSpec": [
+                  "object",
+                  {
+                    "availabilityZone": "string",
+                    "flavor": "string",
+                    "image": "string",
+                    "network": "string",
+                    "rootDiskSizeGB": "number",
+                    "securityGroups": [
+                      "tuple",
+                      [
+                        "string"
+                      ]
+                    ],
+                    "subnet": "string",
+                    "tags": [
+                      "object",
+                      {
+                        "poc-k8c-workers": "string"
+                      }
+                    ]
+                  }
+                ],
+                "operatingSystem": "string",
+                "operatingSystemSpec": [
+                  "object",
+                  {
+                    "distUpgradeOnBoot": "bool"
+                  }
+                ],
+                "sshPublicKeys": [
+                  "tuple",
+                  [
+                    "string"
+                  ]
+                ]
+              }
+            ],
+            "replicas": "number"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "poc-k8c-pool1": {
+        "providerSpec": {
+          "cloudProviderSpec": {
+            "availabilityZone": "south-2",
+            "flavor": "2C-4GB-40GB",
+            "image": "Ubuntu 18.04",
+            "network": "poc-k8c-cluster",
+            "rootDiskSizeGB": 50,
+            "securityGroups": [
+              "poc-k8c-cluster"
+            ],
+            "subnet": "poc-k8c-cluster",
+            "tags": {
+              "poc-k8c-workers": "pool1"
+            }
+          },
+          "operatingSystem": "ubuntu",
+          "operatingSystemSpec": {
+            "distUpgradeOnBoot": false
+          },
+          "sshPublicKeys": [
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCq8d/m2CNWyUnHJZu55UQb4dKOeFbTY8MmI9L/ctQQjRvpclcHJ+/Rszu+ey1nunPrjqImlILDWuHdPRYarUX2AGi3so038PRgJXYk32U9wI1B8d/OkeP2M32H9W/7B7QTDPhjfvYBfG328JGuRA49s5+7Q4DblAqKndc+iZAu1xl0hgmelFE8zcSTXSZyykSnpa1Dx98Hp3K1HgjQbqUCC6Ii6EbnBPrtRcHl/kyUnXOIT4EiRnRw4xOJMa3+7RzEI25kqc2o/n7OiCTUDGrRUKJKqG3ajJ2I4Fp+QOuWh9TotJYXIUncbYfbxLXXW/uhnhAoSngvinFiqwaKreOz8xmND2xgkqaduKkz4f6Ev3KGv0iseyGgJMUYqprAmjP0i0GWbIBiJqbnc2B3cImrzVP/xQrcWFAjZEhYwUJEAFsQCPWe+R8OswZvEIU7qU4c88NByYOYFja/jxQCIdUTLWSPEoVvBqzvuuseuhNK2Rh7YVLXM3mMNCUfvTt9na8= poc-k8c\n"
+          ]
+        },
+        "replicas": 3
+      }
+    }
+  }
+}
